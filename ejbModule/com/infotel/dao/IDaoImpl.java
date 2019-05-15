@@ -2,12 +2,14 @@ package com.infotel.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.infotel.metier.Lotissement;
 import com.infotel.metier.Personne;
 
+@Stateless
 public class IDaoImpl implements IDaoLocal, IDaoRemote {
 
 	@PersistenceContext(unitName="BP_UNIT")
