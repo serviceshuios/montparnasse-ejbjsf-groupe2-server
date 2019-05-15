@@ -33,6 +33,7 @@ public class IDaoImpl implements IDaoLocal, IDaoRemote {
 		em.persist(p);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Personne> listerPersonnes() {
 		return em.createQuery("select p from Personne p").getResultList();
@@ -58,6 +59,7 @@ public class IDaoImpl implements IDaoLocal, IDaoRemote {
 		em.persist(l);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Lotissement> listerLotissements() {
 		return em.createQuery("select l from Lotissement l").getResultList();
