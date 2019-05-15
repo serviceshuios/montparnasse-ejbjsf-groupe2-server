@@ -76,5 +76,4 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 		list = q.getResultList();
 		return list;
 	}
-
 }
