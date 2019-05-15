@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import com.infotel.metier.Lotissement;
 import com.infotel.metier.Personne;
 
+
 @Stateless
 public class DaoImpl implements IDaoLocal, IDaoRemote {
 
