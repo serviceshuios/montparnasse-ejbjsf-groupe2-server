@@ -28,12 +28,12 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 		q = em.createQuery("DELETE FROM Personne p WHERE p.idPersonne = :id").setParameter("id", idPersonne);
 		idPersonne = (long) q.executeUpdate();
 	}
-	
+
 	@Override
 	public Personne getPersonne(Long id) {
 		return em.find(Personne.class, id);
 	}
-	
+
 	@Override
 	public void editerPersonne(Personne p) {
 		em.merge(p);
@@ -84,10 +84,10 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 	@Override
 	public void acheterLotissement(Long idPersonne, Long idLot) {
 		Query q = null;
-		q = em.createQuery("UPDATE Lotissement lot SET lot.personne.idPersonne = :x WHERE lot.idLot = :y")
-				.setParameter("x", idPersonne)
-				.setParameter("y", idLot);
-		q.executeUpdate();
+		q = em.createQuery("UPDATE Lotissement lot SET lot.personne.idPersonne = :x WHERE lot.idLot = :y");
+				q.setParameter("x", idPersonne);
+				q.setParameter("y", idLot);
+		idLot = (long) q.executeUpdate();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -95,8 +95,8 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 	public List<Lotissement> listerAchats() {
 		Query q = null;
 		List<Lotissement> list = new ArrayList<Lotissement>();
-		q = em.createQuery("SELECT lot FROM Lotissement lot WHERE lot.personne.idPersonne = :x")
-				.setParameter("x", null);
+				q = em.createQuery("SELECT lot FROM Lotissement lot WHERE lot.personne.idPersonne < 10");
+//				q = em.createQuery("SELECT lot FROM Lotissement lot EXCEPT SELECT lot FROM Lotissement lot WHERE lot.personne.idPersonne > 0");
 		list = q.getResultList();
 		return list;
 	}
