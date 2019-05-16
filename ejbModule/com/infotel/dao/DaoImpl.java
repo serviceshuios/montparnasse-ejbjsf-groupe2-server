@@ -87,7 +87,7 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 		q = em.createQuery("UPDATE Lotissement lot SET lot.personne.idPersonne = :x WHERE lot.idLot = :y")
 				.setParameter("x", idPersonne)
 				.setParameter("y", idLot);
-		q.getResultList();
+		q.executeUpdate();
 	}
 
 	@SuppressWarnings("unchecked")

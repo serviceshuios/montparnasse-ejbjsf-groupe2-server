@@ -23,6 +23,6 @@ public interface ILotRemote {
 	public List<Lotissement> listerLotissements();
 	
 	public void acheterLotissement(Long idPersonne, Long idLot);
-	public List<Lotissement> listerAchats();
+	public List<Lotissement>listerAchats();
 
 }
