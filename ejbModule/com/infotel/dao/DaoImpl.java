@@ -53,8 +53,10 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 	}
 
 	@Override
-	public void supprimerLotissement(Lotissement l) {
-		em.remove(l);	
+	public void supprimerLotissement2(long idLot) {
+		Query q = null;
+		q = em.createQuery("DELETE FROM Lotissement l WHERE l.idLot = : id").setParameter("id", idLot);
+		idLot = q.executeUpdate();
 	}
 
 	@Override
@@ -75,5 +77,11 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 		q = em.createQuery("SELECT l FROM Lotissement l");
 		list = q.getResultList();
 		return list;
+	}
+
+	@Override
+	public void supprimerLotissement(Lotissement l) {
+		// TODO Auto-generated method stub
+		em.remove(l);
 	}
 }

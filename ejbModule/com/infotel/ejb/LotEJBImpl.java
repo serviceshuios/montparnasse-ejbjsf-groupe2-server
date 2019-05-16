@@ -32,6 +32,7 @@ public class LotEJBImpl implements ILotLocal, ILotRemote {
 		dao.supprimerPersonne(p);
 	}
 	
+	
 	@Override
 	public Personne getPersonne(Long id) {
 		return dao.getPersonne(id);
@@ -55,6 +56,10 @@ public class LotEJBImpl implements ILotLocal, ILotRemote {
 	@Override
 	public void supprimerLotissement(Lotissement l) {
 		dao.supprimerLotissement(l);	
+	}
+	@Override
+	public void supprimerLotissement2(long idLot) {
+		dao.supprimerLotissement2(idLot);	
 	}
 
 	@Override

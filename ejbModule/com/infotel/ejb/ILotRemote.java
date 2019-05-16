@@ -21,4 +21,6 @@ public interface ILotRemote {
 	public Lotissement getLotissement(Long id);
 	public void editerLotissement(Lotissement l);
 	public List<Lotissement> listerLotissements();
+	
+	void supprimerLotissement2(long idLot);
 }
