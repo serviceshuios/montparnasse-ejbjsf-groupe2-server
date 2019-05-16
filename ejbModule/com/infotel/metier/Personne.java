@@ -1,9 +1,11 @@
 package com.infotel.metier;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,8 +29,8 @@ public class Personne implements Serializable{
 	@OneToOne
 	private Personne personne;
 	
-	@OneToMany(mappedBy = "personne")
-	private List<Lotissement> lotissements;
+	@OneToMany(mappedBy = "personne",fetch = FetchType.EAGER)
+	private List<Lotissement> lotissements = new ArrayList<Lotissement>();
 	
 	
 	public Personne(long idPersonne, String nom, String prenom, int age) {

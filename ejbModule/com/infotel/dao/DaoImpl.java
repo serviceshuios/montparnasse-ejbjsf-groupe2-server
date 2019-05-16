@@ -20,6 +20,7 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 	@Override
 	public void ajouterPersonne(Personne p) {
 		em.persist(p);
+//		p = new Personne();
 	}
 
 	@Override
@@ -27,17 +28,9 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 		Query q = null;
 		q = em.createQuery("DELETE FROM Personne p WHERE p.idPersonne = :id").setParameter("id", idPersonne);
 		idPersonne = (long) q.executeUpdate();
+//		Personne p = new Personne();
 	}
 	
-	@Override
-	public Personne getPersonne(Long id) {
-		return em.find(Personne.class, id);
-	}
-
-	@Override
-	public void editerPersonne(Personne p) {
-		em.merge(p);
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -69,6 +62,16 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 	@Override
 	public void editerLotissement(Lotissement l) {
 		em.merge(l);
+	}
+
+	@Override
+	public Personne getPersonne(Long id) {
+		return em.find(Personne.class, id);
+	}
+	
+	@Override
+	public void editerPersonne(Personne p) {
+		em.merge(p);
 	}
 
 	@SuppressWarnings("unchecked")

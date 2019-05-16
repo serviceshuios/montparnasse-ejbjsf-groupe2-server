@@ -77,22 +77,12 @@ public class Lotissement implements Serializable {
 	@Override
 	public String toString() {
 		return "Lotissement [idLot=" + idLot + ", numLot=" + numLot + ", adresseLot=" + adresseLot + ", dateCreation="
-				+ dateCreation + ", prix=" + prix + ", personne=" + personne + "]";
+				+ dateCreation + ", prix=" + prix + "]";
 	}
 
-	public Lotissement(long idLot, int numLot, String adresseLot, Date dateCreation, double prix, Personne personne) {
-		super();
-		this.idLot = idLot;
-		this.numLot = numLot;
-		this.adresseLot = adresseLot;
-		this.dateCreation = dateCreation;
-		this.prix = prix;
-		this.personne = personne;
-	}
 
 	public Lotissement() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	
