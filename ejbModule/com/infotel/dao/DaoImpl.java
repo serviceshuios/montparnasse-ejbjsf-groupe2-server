@@ -15,7 +15,7 @@ import com.infotel.metier.Personne;
 public class DaoImpl implements IDaoLocal, IDaoRemote {
 
 	@PersistenceContext(unitName="BP_UNIT")
-	private EntityManager em; // lien entre BDD et dao
+	private EntityManager em;  // lien entre BDD et dao
 	
 	@Override
 	public void ajouterPersonne(Personne p) {
@@ -66,7 +66,7 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 
 	@Override
 	public void editerLotissement(Lotissement l) {
-		em.persist(l);
+		em.merge(l);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -81,7 +81,6 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 
 	@Override
 	public void supprimerLotissement(Lotissement l) {
-		// TODO Auto-generated method stub
 		em.remove(l);
 	}
 }
