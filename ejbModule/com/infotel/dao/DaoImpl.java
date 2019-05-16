@@ -14,9 +14,9 @@ import com.infotel.metier.Personne;
 @Stateless
 public class DaoImpl implements IDaoLocal, IDaoRemote {
 
-	@PersistenceContext(unitName="BP_UNIT")
-	private EntityManager em;  // lien entre BDD et dao
-	
+	@PersistenceContext(unitName = "BP_UNIT")
+	private EntityManager em; // lien entre BDD et dao
+
 	@Override
 	public void ajouterPersonne(Personne p) {
 		em.persist(p);
@@ -30,7 +30,6 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 		idPersonne = (long) q.executeUpdate();
 //		Personne p = new Personne();
 	}
-	
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -41,7 +40,7 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 		list = q.getResultList();
 		return list;
 	}
-	
+
 	@Override
 	public void ajouterLotissement(Lotissement l) {
 		em.persist(l);
@@ -68,7 +67,7 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 	public Personne getPersonne(Long id) {
 		return em.find(Personne.class, id);
 	}
-	
+
 	@Override
 	public void editerPersonne(Personne p) {
 		em.merge(p);
@@ -88,4 +87,14 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 	public void supprimerLotissement(Lotissement l) {
 		em.remove(l);
 	}
+
+	@Override
+	public void acheterLotissement(Long idPersonne, Long idLot) {
+		Query q = null;
+		q = em.createQuery("UPDATE Lotissement lot SET lot.idPersonne =:x WHERE lot.idLot = :y")
+				.setParameter("x", idPersonne)
+				.setParameter("y", idLot);
+		q.getResultList();
+	}
+
 }
