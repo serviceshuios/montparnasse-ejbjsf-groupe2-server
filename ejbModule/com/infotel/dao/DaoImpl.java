@@ -20,7 +20,6 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 	@Override
 	public void ajouterPersonne(Personne p) {
 		em.persist(p);
-//		p = new Personne();
 	}
 
 	@Override
@@ -28,7 +27,16 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 		Query q = null;
 		q = em.createQuery("DELETE FROM Personne p WHERE p.idPersonne = :id").setParameter("id", idPersonne);
 		idPersonne = (long) q.executeUpdate();
-//		Personne p = new Personne();
+	}
+	
+	@Override
+	public Personne getPersonne(Long id) {
+		return em.find(Personne.class, id);
+	}
+	
+	@Override
+	public void editerPersonne(Personne p) {
+		em.merge(p);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -47,9 +55,9 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 	}
 
 	@Override
-	public void supprimerLotissement2(long idLot) {
+	public void supprimerLotissement(long idLot) {
 		Query q = null;
-		q = em.createQuery("DELETE FROM Lotissement l WHERE l.idLot = : id").setParameter("id", idLot);
+		q = em.createQuery("DELETE FROM Lotissement l WHERE l.idLot = :id").setParameter("id", idLot);
 		idLot = q.executeUpdate();
 	}
 
@@ -63,16 +71,6 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 		em.merge(l);
 	}
 
-	@Override
-	public Personne getPersonne(Long id) {
-		return em.find(Personne.class, id);
-	}
-
-	@Override
-	public void editerPersonne(Personne p) {
-		em.merge(p);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Lotissement> listerLotissements() {
@@ -84,17 +82,23 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 	}
 
 	@Override
-	public void supprimerLotissement(Lotissement l) {
-		em.remove(l);
-	}
-
-	@Override
 	public void acheterLotissement(Long idPersonne, Long idLot) {
 		Query q = null;
-		q = em.createQuery("UPDATE Lotissement lot SET lot.idPersonne =:x WHERE lot.idLot = :y")
+		q = em.createQuery("UPDATE Lotissement lot SET lot.idPersonne = :x WHERE lot.idLot = :y")
 				.setParameter("x", idPersonne)
 				.setParameter("y", idLot);
 		q.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Lotissement> listerAchats() {
+		Query q = null;
+		List<Lotissement> list = new ArrayList<Lotissement>();
+		q = em.createQuery("SELECT lot FROM Lotissement lot WHERE lot.idPersonne = :x")
+				.setParameter("x", null);
+		list = q.getResultList();
+		return list;
 	}
 
 }

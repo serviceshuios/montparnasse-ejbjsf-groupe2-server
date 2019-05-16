@@ -17,13 +17,12 @@ public interface ILotRemote {
 	public List<Personne> listerPersonnes();
 
 	public void ajouterLotissement(Lotissement l);
-	public void supprimerLotissement(Lotissement l);
+	public void supprimerLotissement(long idLot);
 	public Lotissement getLotissement(Long id);
 	public void editerLotissement(Lotissement l);
 	public List<Lotissement> listerLotissements();
 	
-	void supprimerLotissement2(long idLot);
-	
-	void acheterLotissement(Long idPersonne, Long idLot);
+	public void acheterLotissement(Long idPersonne, Long idLot);
+	public List<Lotissement> listerAchats();
 
 }

@@ -50,15 +50,11 @@ public class LotEJBImpl implements ILotLocal, ILotRemote {
 	@Override
 	public void ajouterLotissement(Lotissement l) {
 		dao.ajouterLotissement(l);
+	}
 
-	}
 	@Override
-	public void supprimerLotissement(Lotissement l) {
-		dao.supprimerLotissement(l);	
-	}
-	@Override
-	public void supprimerLotissement2(long idLot) {
-		dao.supprimerLotissement2(idLot);	
+	public void supprimerLotissement(long idLot) {
+		dao.supprimerLotissement(idLot);	
 	}
 
 	@Override
@@ -75,9 +71,15 @@ public class LotEJBImpl implements ILotLocal, ILotRemote {
 	public List<Lotissement> listerLotissements() {
 		return dao.listerLotissements();
 	}
+	
 	@Override
 	public void acheterLotissement(Long idPersonne, Long idLot) {
 		dao.acheterLotissement(idPersonne, idLot);
+	}
+	
+	@Override
+	public List<Lotissement> listerAchats() {
+		return dao.listerAchats();
 	}
 
 }
