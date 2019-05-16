@@ -84,7 +84,7 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 	@Override
 	public void acheterLotissement(Long idPersonne, Long idLot) {
 		Query q = null;
-		q = em.createQuery("UPDATE Lotissement lot SET lot.idPersonne = :x WHERE lot.idLot = :y")
+		q = em.createQuery("UPDATE Lotissement lot SET lot.personne.idPersonne = :x WHERE lot.idLot = :y")
 				.setParameter("x", idPersonne)
 				.setParameter("y", idLot);
 		q.getResultList();
@@ -95,7 +95,7 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 	public List<Lotissement> listerAchats() {
 		Query q = null;
 		List<Lotissement> list = new ArrayList<Lotissement>();
-		q = em.createQuery("SELECT lot FROM Lotissement lot WHERE lot.idPersonne = :x")
+		q = em.createQuery("SELECT lot FROM Lotissement lot WHERE lot.personne.idPersonne = :x")
 				.setParameter("x", null);
 		list = q.getResultList();
 		return list;
