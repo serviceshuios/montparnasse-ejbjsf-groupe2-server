@@ -78,8 +78,13 @@ public class LotEJBImpl implements ILotLocal, ILotRemote {
 	}
 	
 	@Override
-	public List<Lotissement> listerAchats() {
-		return dao.listerAchats();
+	public List<Lotissement> listerVendus() {
+		return dao.listerVendus();
+	}
+
+	@Override
+	public List<Lotissement> listerAVendre() {
+		return dao.listerAVendre();
 	}
 
 }

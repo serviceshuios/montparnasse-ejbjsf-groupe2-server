@@ -87,18 +87,27 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 		q = em.createQuery("UPDATE Lotissement lot SET lot.personne.idPersonne = :x WHERE lot.idLot = :y");
 				q.setParameter("x", idPersonne);
 				q.setParameter("y", idLot);
-		idLot = (long) q.executeUpdate();
+		q.executeUpdate();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Lotissement> listerAchats() {
+	public List<Lotissement> listerVendus() {
 		Query q = null;
 		List<Lotissement> list = new ArrayList<Lotissement>();
-				q = em.createQuery("SELECT lot FROM Lotissement lot WHERE lot.personne.idPersonne < 10");
-//				q = em.createQuery("SELECT lot FROM Lotissement lot EXCEPT SELECT lot FROM Lotissement lot WHERE lot.personne.idPersonne > 0");
+				q = em.createQuery("SELECT lot FROM Lotissement lot WHERE lot.personne.idPersonne IS NOT NULL");
 		list = q.getResultList();
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Lotissement> listerAVendre() {
+		Query q = null;
+		List<Lotissement> list = new ArrayList<Lotissement>();
+				q = em.createQuery("SELECT lot FROM Lotissement lot WHERE lot.personne.idPersonne IS NULL");
+		list = q.getResultList();
+		return list;
+	}
+	
 }
