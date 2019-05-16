@@ -23,8 +23,10 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 	}
 
 	@Override
-	public void supprimerPersonne(Personne p) {
-		em.remove(p);
+	public void supprimerPersonne(Long idPersonne) {
+		Query q = null;
+		q = em.createQuery("DELETE FROM Personne p WHERE p.idPersonne = :id").setParameter("id", idPersonne);
+		idPersonne = (long) q.executeUpdate();
 	}
 	
 	@Override
@@ -34,7 +36,7 @@ public class DaoImpl implements IDaoLocal, IDaoRemote {
 
 	@Override
 	public void editerPersonne(Personne p) {
-		em.persist(p);
+		em.merge(p);
 	}
 
 	@SuppressWarnings("unchecked")

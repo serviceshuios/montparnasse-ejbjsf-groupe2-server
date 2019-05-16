@@ -11,7 +11,7 @@ import com.infotel.metier.Personne;
 public interface ILotRemote {
 	
 	public void ajouterPersonne(Personne p);
-	public void supprimerPersonne(Personne p);
+	public void supprimerPersonne(Long id);
 	public Personne getPersonne(Long id);
 	public void editerPersonne(Personne p);
 	public List<Personne> listerPersonnes();
